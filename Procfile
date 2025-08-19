@@ -1,0 +1,1 @@
+web: gunicorn tjdemo.wsgi --log-file -
