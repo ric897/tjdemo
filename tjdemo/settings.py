@@ -78,13 +78,13 @@ WSGI_APPLICATION = 'tjdemo.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASE_URL = config('DATABASE_URL', default=None)
-if DATABASE_URL:
+if DATABASE_URL and DATABASE_URL.strip():
     # Production database (PostgreSQL on DigitalOcean)
     DATABASES = {
         'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
 else:
-    # Development database (SQLite)
+    # Development database (SQLite) or fallback during build
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
